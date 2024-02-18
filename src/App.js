@@ -5,7 +5,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState('');
-  const totalAmount = items.reduce((total, item) => total + parseInt(item.amount), 0);
+  const totalAmount = items.reduce((total, item) => total + parseFloat(item.amount), 0);
 
   const [date, setDate] = useState(new Date());
 
