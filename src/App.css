@@ -22,11 +22,35 @@ body {
   color: white;
 }
 
+.App-header .header {
+  display: flex;
+  justify-content: space-between;
+  width: 720px;
+}
+
+.nav-btn {
+  cursor: pointer;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s linear;
+}
+
+.App-header .header:not(:hover) .nav-btn {
+  opacity: 0;
+}
+
+.App-header .header:hover .nav-btn {
+  visibility: visible;
+  opacity: 1;
+}
+
 .container {
   background: white;
   margin: 0 auto;
   max-width: 720px;
   height: 70vh;
+  resize: vertical;
+  overflow-y: auto;
 }
 
 .ledger {
