@@ -68,9 +68,15 @@ body {
 }
 
 .item {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 8px;
+  /* padding-bottom: 8px; */
+}
+
+.item p {
+  display: inline;
 }
 
 .ledger .input-container {

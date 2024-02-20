@@ -23,6 +23,10 @@ function App() {
     return `${weekday} - ${day}${suffix} ${month}`;
   }
   
+  /**
+   * Callback for add button. Adds item to list and resets input fields.
+   * @param {*} e 
+   */
   const handleAdd = (e) => {
     e.preventDefault();
     setItems([...items, { item, amount }]);
@@ -30,6 +34,26 @@ function App() {
     setAmount(0);
   }
 
+  /**
+   * Callback for delete button. Deletes item from list.
+   * @param {*} e 
+   */
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const item = e.target.value;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].item === item) {
+        const newItems = items.slice();
+        newItems.splice(i, 1);
+        setItems(newItems);
+        break;
+      }
+    }
+  }
+
+  /**
+   * Callback for previous day button. Sets date to previous day.
+   */
   const handlePrevDay = () => {
     setDate(prevDate => {
       const newDate = new Date(prevDate);
@@ -38,6 +62,9 @@ function App() {
     });
   }
 
+  /**
+   * Callback for next day button. Sets date to next day.
+   */
   const handleNextDay = () => {
     setDate(currDate => {
       const newDate = new Date(currDate);
@@ -59,7 +86,10 @@ function App() {
         <div className='ledger'>
           <div className='items'>
             {items.map((item, index) => (
-              <p className='item' key={index}>{item.item} - {item.amount}</p>
+              <div className='item' key={index}>
+                <p>{item.item} - {item.amount}</p>
+                <button value={item.item} onClick={handleDelete}>Delete</button>
+              </div>
             ))}
           </div>
           <div className='input-container'>
