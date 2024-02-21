@@ -1,5 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   const [items, setItems] = useState([]);
@@ -88,7 +90,9 @@ function App() {
             {items.map((item, index) => (
               <div className='item' key={index}>
                 <p>{item.item} - {item.amount}</p>
-                <button value={item.item} onClick={handleDelete}>Delete</button>
+                <button className='delete-btn' value={item.item} onClick={handleDelete}>
+                  <FontAwesomeIcon icon={faTrash}/>
+                </button>
               </div>
             ))}
           </div>
