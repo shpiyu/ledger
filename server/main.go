@@ -8,6 +8,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
+const date_format string = "02-01-2006"
+
 type Item struct {
 	Name   string  `json:"name"`
 	Amount float32 `json:"amount"`
@@ -15,7 +17,13 @@ type Item struct {
 }
 
 var items = []Item{
-	{Name: "Item 1", Amount: 10.34, Date: time.Now().Format("2006-01-02")},
+	{Name: "Curd", Amount: 88.00, Date: time.Now().Format(date_format)},
+	{Name: "Eggs", Amount: 54.00, Date: time.Now().Format(date_format)},
+	{Name: "Peanut Butter", Amount: 125.00, Date: time.Now().Format(date_format)},
+	{Name: "Butter", Amount: 58.00, Date: time.Now().Format(date_format)},
+	{Name: "Lemon", Amount: 52.00, Date: time.Now().Format(date_format)},
+	{Name: "Bread", Amount: 54.00, Date: time.Now().Format(date_format)},
+	{Name: "Face Wash", Amount: 368.00, Date: time.Now().Format(date_format)},
 }
 
 func createItemHandler(w http.ResponseWriter, r *http.Request) {
@@ -32,6 +40,7 @@ func createItemHandler(w http.ResponseWriter, r *http.Request) {
 	newItem.Date = date
 	items = append(items, newItem)
 
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(newItem)
 }
@@ -46,6 +55,7 @@ func getItemsHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(result)
 }
 
